@@ -1,5 +1,8 @@
 package com.faqsarg.lombok.model;
 
-public class BeerStyle {
-    private String styleName;
+public enum BeerStyle {
+    PALE_ALE,
+    RED_ALE,
+    IPA,
+    HONEY
 }
