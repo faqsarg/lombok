@@ -2,6 +2,7 @@ package com.faqsarg.lombok.services;
 
 import com.faqsarg.lombok.model.Customer;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -80,5 +81,14 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void deleteCustomerById(UUID id) {
         customerMap.remove(id);
+    }
+
+    @Override
+    public void patchById(UUID id, Customer customer) {
+        Customer existing = customerMap.get(id);
+
+        if (StringUtils.hasText(customer.getCustomerName())) {
+            existing.setCustomerName(customer.getCustomerName());
+        }
     }
 }
