@@ -35,6 +35,8 @@ class BeerControllerTest {
 
         Beer testBeer = beerServiceImpl.listBeers().get(0);
 
+        // configure the mock for when getBeerById is called with any UUID as a parameter,
+        // to return the testBeer object.
         given(beerService.getBeerById(any(UUID.class))).willReturn(testBeer);
 
         mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID())
