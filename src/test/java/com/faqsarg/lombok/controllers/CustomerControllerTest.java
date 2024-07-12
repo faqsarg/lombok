@@ -3,6 +3,8 @@ package com.faqsarg.lombok.controllers;
 import com.faqsarg.lombok.model.Customer;
 import com.faqsarg.lombok.services.CustomerService;
 import com.faqsarg.lombok.services.CustomerServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,10 +23,20 @@ public class CustomerControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @MockBean
     CustomerService customerService;
 
     CustomerServiceImpl customerServiceImpl = new CustomerServiceImpl();
+
+    @Test
+    void testCreateNewCustomer() throws JsonProcessingException {
+        Customer customer = customerServiceImpl.allCustomers().get(0);
+
+        System.out.println(objectMapper.writeValueAsString(customer));
+    }
 
     @Test
     void testAllCustomers() throws Exception {
