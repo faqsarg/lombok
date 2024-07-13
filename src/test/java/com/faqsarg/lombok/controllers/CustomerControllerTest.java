@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.faqsarg.lombok.controllers.CustomerController.CUSTOMER_PATH;
+import static com.faqsarg.lombok.controllers.CustomerController.CUSTOMER_PATH_ID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -28,8 +30,6 @@ import static org.hamcrest.core.Is.is;
 
 @WebMvcTest(CustomerController.class)
 public class CustomerControllerTest {
-
-    private static final String CUSTOMER_PATH = "/api/v1/customer";
 
     @Autowired
     MockMvc mockMvc;
@@ -60,7 +60,7 @@ public class CustomerControllerTest {
         Map<String, Object> customerMap = new HashMap<>();
         customerMap.put("customerName", "customer name updated");
 
-        mockMvc.perform(patch(CUSTOMER_PATH + "/" + customer.getId())
+        mockMvc.perform(patch(CUSTOMER_PATH_ID, customer.getId())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(customerMap)))
@@ -76,7 +76,7 @@ public class CustomerControllerTest {
     void testDeleteCustomer() throws Exception {
         Customer customer = customerServiceImpl.allCustomers().get(0);
 
-        mockMvc.perform(delete(CUSTOMER_PATH + "/" + customer.getId())
+        mockMvc.perform(delete(CUSTOMER_PATH_ID, customer.getId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
 
@@ -89,7 +89,7 @@ public class CustomerControllerTest {
     void testUpdateCustomer() throws Exception {
         Customer customer = customerServiceImpl.allCustomers().get(0);
 
-        mockMvc.perform(put(CUSTOMER_PATH + "/" + customer.getId())
+        mockMvc.perform(put(CUSTOMER_PATH_ID, customer.getId())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(customer)))
@@ -136,7 +136,7 @@ public class CustomerControllerTest {
 
         given(customerService.getCustomerById(customer.getId())).willReturn(customer);
 
-        mockMvc.perform(get(CUSTOMER_PATH + "/" + customer.getId())
+        mockMvc.perform(get(CUSTOMER_PATH_ID, customer.getId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
