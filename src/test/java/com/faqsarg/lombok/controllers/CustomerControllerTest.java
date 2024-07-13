@@ -3,7 +3,6 @@ package com.faqsarg.lombok.controllers;
 import com.faqsarg.lombok.model.Customer;
 import com.faqsarg.lombok.services.CustomerService;
 import com.faqsarg.lombok.services.CustomerServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

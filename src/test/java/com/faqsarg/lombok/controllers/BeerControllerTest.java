@@ -3,9 +3,7 @@ package com.faqsarg.lombok.controllers;
 import com.faqsarg.lombok.model.Beer;
 import com.faqsarg.lombok.services.BeerService;
 import com.faqsarg.lombok.services.BeerServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -16,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.rmi.MarshalledObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
