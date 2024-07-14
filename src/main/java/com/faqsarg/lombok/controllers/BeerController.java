@@ -64,8 +64,6 @@ public class BeerController {
     @GetMapping(value = BEER_PATH_ID)
     public Beer getBeerById(@PathVariable("beerId") UUID beerId) {
 
-        log.debug("getBeerById function from controller BeerController was called.");
-
         return beerService.getBeerById(beerId);
     }
 }
